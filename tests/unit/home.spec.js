@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import Home from "../../src/views/Home.vue";
+import Navigation from "../../src/components/Navigation.vue";
 import Vuex from "vuex";
 
 const localVue = createLocalVue();
@@ -40,7 +40,7 @@ describe("Home.vue", () => {
   });
 
   it("renders navbar", () => {
-    const wrapper = shallowMount(Home, { store, localVue });
+    const wrapper = shallowMount(Navigation, { store, localVue });
 
     expect(wrapper.find('[data-test-id="navbar"]').exists()).toBe(true);
   });
@@ -52,7 +52,7 @@ describe("Home.vue", () => {
       },
     });
 
-    const wrapper = shallowMount(Home, {
+    const wrapper = shallowMount(Navigation, {
       store,
       localVue,
       stubs: { transition: transitionStub() },
@@ -70,7 +70,7 @@ describe("Home.vue", () => {
     const mockRouter = {
       push: jest.fn(),
     };
-    const wrapper = shallowMount(Home, {
+    const wrapper = shallowMount(Navigation, {
       store,
       localVue,
       mocks: { $router: mockRouter },
@@ -88,7 +88,7 @@ describe("Home.vue", () => {
         return this.$options._renderChildren;
       },
     });
-    const wrapper = shallowMount(Home, {
+    const wrapper = shallowMount(Navigation, {
       store,
       localVue,
       stubs: { transition: transitionStub() },
