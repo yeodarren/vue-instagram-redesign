@@ -3,6 +3,7 @@
     <div class="container">
       <img v-test="{id: 'logo'}" class="logo" src="../assets/instagram_logo.png" alt="logo" />
       <form class="login-form" v-if="showLoginForm" @submit.prevent="login" v-test="{id: 'loginForm'}" data-cy="login-form">
+        <div class="error" v-if="error">{{ error }}</div>
         <label>Email</label>
         <input type="email" v-model="email" placeholder="Enter email" v-test="{id: 'email'}" data-cy="login-email"/>
         <span v-if="(!$v.email.required || !$v.email.email) && $v.email.$dirty"
@@ -30,6 +31,7 @@
         <router-link to="/resetpassword" data-cy="reset-password">Forgot password?</router-link>
       </form>
       <form class="register-form" v-else @submit.prevent="register" v-test="{id: 'registerForm'}" data-cy="register-form">
+        <div class="error" v-if="error">{{ error }}</div>
         <label>Username</label>
         <input type="text" v-model="username" placeholder="Enter username" data-cy="register-username" />
         <span v-if="!$v.username.required && $v.username.$dirty"
@@ -114,6 +116,11 @@ export default {
       })
     },
   },
+  computed: {
+    ...mapGetters({
+      error: "auth/getErrorMsg"
+    })
+  }
 };
 </script>
 

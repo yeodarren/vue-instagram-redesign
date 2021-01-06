@@ -132,7 +132,7 @@ import { mapActions, mapGetters } from "vuex";
 import Test from '../directives/test'
 export default {
     directives: { Test },
-    component: { Icon },
+    components: { Icon },
     data: () => ({
     drawer: false,
     loading: false,
